@@ -1,4 +1,4 @@
-# c4mund0n60 tool
+# c4mund0n60
 <p align="center">
   <img width="200" src="c4mund0n60.jpg" alt="c4mund0n60 logo">
 </p>
@@ -9,7 +9,7 @@
 # Flowchart 
 ![c4mund0n60 flowchart](flowchart.drawio.png)
 # Installation Guide
-## **THE Step 2.3 IS MANDATORY**
+## **THE STEP 2.3 IS MANDATORY**
 ### Step 1 - Download and Build docker image
 ```
 git clone https://github.com/CircuitSoul/c4mund0n60
@@ -17,7 +17,7 @@ cd c4mund0n60
 docker image build -t c4mund0n60-tools:1.0 .
 ```
 ### Step 2 - Environment setup and install dependencies
-##### Step 2.1 - ElasticSearch
+#### Step 2.1 - ElasticSearch
 > **if you want use a pre-deploy Elasticsearch instance, insert: url, user and pass in ./configuration/config.txt**
 >
 ```
@@ -35,8 +35,8 @@ ELASTIC_PASS: "pass"
 
 ```docker run -p 9200:9200 -p 9600:9600 -v ./configuration/opensearch-data:/usr/share/opensearch/data -e "discovery.type=single-node" --name opensearch-node -d opensearchproject/opensearch:latest```
 
-##### Step 2.2 - Python dependencies
->`pip3 install -r requirements.txt`
+#### Step 2.2 - Python dependencies
+`pip3 install -r requirements.txt`
 ##### Step 2.3 - Set your keys in ./configuration/config.txt
 ```
 # TELEGRAM BOT
@@ -55,18 +55,18 @@ VTAPIKEY: "<vtapi-key>"
 CHAOSKEY: "<chaos-key>"
 ```
 # How to use
-#### For init a project , follow the instructions in output for insert domains in domains.txt
+### For init a project , follow the instructions in output for insert domains in domains.txt
 `
 sh initProject.sh <project-name>
 `
 
-####   For init a project with domain list of bug bounty program or blackbox pentest
+### For init a project with domain list of bug bounty program or blackbox pentest
 ```
 sh initProject.sh <project-name> <domains.txt>
 python3 main.py <project-name>
 ```
 
-#### For delete ALL INDICES about a project
+### For delete ALL INDICES about a project
 `
 python3 main.py <project-name>
 `
@@ -114,7 +114,6 @@ sudo /etc/init.d/docker start
 [boot]
 command="service docker start"
 ```
-
 #### Extra
 > **docker command line for view the complete table ‘COMMAND’ of all running containers**
 
