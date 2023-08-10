@@ -37,7 +37,8 @@ ELASTIC_PASS: "pass"
 
 #### Step 2.2 - Python dependencies
 `pip3 install -r requirements.txt`
-##### Step 2.3 - Set your keys in ./configuration/config.txt
+
+#### Step 2.3 - Set your keys in ./configuration/config.txt
 ```
 # TELEGRAM BOT
 TELEGRAM_ApiToken: "<apitoken-key>"
