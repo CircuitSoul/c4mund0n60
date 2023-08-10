@@ -1,3 +1,10 @@
+#my custom paths ignore
+.vscode
+configuration/config.txt
+configuration/__pycache__/
+helpers/__pycache__/
+targets/__pycache__/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
