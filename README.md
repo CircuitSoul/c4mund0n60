@@ -59,65 +59,66 @@ CHAOSKEY: "<chaos-key>"
 `
 sh initProject.sh <project-name>
 `
-
 ### For init a project with domain list of bug bounty program or blackbox pentest
 ```
 sh initProject.sh <project-name> <domains.txt>
 python3 main.py <project-name>
 ```
-
 ### For delete ALL INDICES about a project
 `
 python3 main.py <project-name>
 `
 
 # Attachments
-#### Setup Docker Engine (Native Docker) in WSL 2
->**Install need packages**
-```
-sudo apt update && sudo apt upgrade
-sudo apt remove docker docker-engine docker.io containerd runc
-sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release
-```
+<details>
+  <summary>**Setup Docker Engine (Native Docker) in WSL 2**</summary> 
+  >**Install need packages**
+  ```
+  sudo apt update && sudo apt upgrade
+  sudo apt remove docker docker-engine docker.io containerd runc
+  sudo apt-get install \
+      apt-transport-https \
+      ca-certificates \
+      curl \
+      gnupg \
+      lsb-release
+  ```
 
->**Input docker repository in Ubuntu source list**
-```
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-echo \
-  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```
+  >**Input docker repository in Ubuntu source list**
+  ```
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+  echo \
+    "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  ```
 
->**Install docker engine**
-```
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-``` 
-> **Give permission for current user**
+  >**Install docker engine**
+  ```
+  sudo apt-get update
+  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+  ``` 
+  > **Give permission for current user**
 
-`sudo usermod -aG docker $USER`
+  `sudo usermod -aG docker $USER`
 
->**Initialize docker service**
-```
-sudo service docker start
-sudo /etc/init.d/docker start
-```
+  >**Initialize docker service**
+  ```
+  sudo service docker start
+  sudo /etc/init.d/docker start
+  ```
 
->**Setup docker service when WSL initialize**
->insert the follow content in **/etc/wsl.conf**
-```
-[boot]
-command="service docker start"
-```
-#### Extra
-> **docker command line for view the complete table ‘COMMAND’ of all running containers**
+  >**Setup docker service when WSL initialize**
+  >insert the follow content in **/etc/wsl.conf**
+  ```
+  [boot]
+  command="service docker start"
+  ```
+  #### Extra
+  > **docker command line for view the complete table ‘COMMAND’ of all running containers**
 
-`for i in $(docker ps --format "table {{.ID}}" | grep -v "CONTAINER ID");do docker inspect $i; done | jq --arg separator $'********' '$separator + .[].Config.WorkingDir, .[].Config.Cmd, .[].Config.Entrypoint' | grep '********'`
+  `for i in $(docker ps --format "table {{.ID}}" | grep -v "CONTAINER ID");do docker inspect $i; done | jq --arg separator $'********' '$separator + .[].Config.WorkingDir, .[].Config.Cmd, .[].Config.Entrypoint' | grep '********'`
+
+<details>
 
 
 # THANKS
