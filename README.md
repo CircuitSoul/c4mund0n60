@@ -1,4 +1,5 @@
-# What is the c4mund0n60 tool
+# c4mund0n60 tool
+![c4mund0n60 logo](c4mund0n60.jpg)
 - c4mund0n60 is a tool that use output of known tools for generate smart information about a domain(target);
 - c4mund0n60 is integrate with Telegram and notify new subdomains founded , open ports and vulnerabilitys automatic.
 
@@ -13,7 +14,7 @@ docker image build -t c4mund0n60-tools:1.0 .
 ```
 ### Step 2 - Environment setup and install dependencies
 ##### Step 2.1 - ElasticSearch
-> **if you want a instance of elastic search, insert the url , user and pass in c4mund0n60/configuration/config.txt**
+> **if you want use a pre-deploy Elasticsearch instance, insert: url, user and pass in ./configuration/config.txt**
 >
 ```
 # ELASTIC
