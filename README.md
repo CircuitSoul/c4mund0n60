@@ -153,7 +153,7 @@ python3 main.py <project-name> --delete
 - [ ] Implement regex analysis in JS files for search users, passwords and secrets things (https://adityashende17.medium.com/how-to-js-for-bug-bounties-edition-2023-7108b56d9db6).
 - [ ] Implement SSL Certificates extration and DNS Names from ASN. (https://twitter.com/pdnuclei/status/1676184515021029377).
 - [ ] Implement nrich tool (https://asciinema.org/a/468923).
-- [ ] Implement a mecanism that get a list fo root domains from a CIDR block (https://twitter.com/hakluke/status/1665931596631875584).
+- [ ] Implement a mecanism that get a list of root domains from a CIDR block (https://twitter.com/hakluke/status/1665931596631875584).
 - [ ] Implement search.censys.io or use tools like sublist3r/amass for this.
 - [ ] Implement urlscan.io.
 - [ ] Implement crackmapexec for brute force services and another things.

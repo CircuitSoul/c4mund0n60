@@ -48,7 +48,6 @@ RUN mv /root/go/bin/chaos /usr/bin
 RUN go install -v github.com/openrdap/rdap/cmd/rdap@master
 RUN mv /root/go/bin/rdap /usr/bin/
 
-
 # WEB ENUMERATION TOOLS
 RUN go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
 RUN mv /root/go/bin/httpx /usr/bin/
@@ -70,10 +69,8 @@ RUN nuclei -ut
 # RUN apt install nmap -y
 # RUN apt install nikto -y
 
-
 ## BRUTE FORCE TOOLS
 # RUN apt install hydra -y
-
 
 ## OSINT TOOLS - in progress
 # RUN apt install ripgrep -y
