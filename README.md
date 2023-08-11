@@ -1,13 +1,14 @@
 # c4mund0n60
 <p align="center">
-  <img width="200" src="c4mund0n60.jpg" alt="c4mund0n60 logo">
+  <img width="200" src="assets/c4mund0n60.jpg" alt="c4mund0n60 logo">
 </p>
 
 - c4mund0n60 is a tool that use output of known tools for generate smart information about a domain(target);
 - c4mund0n60 is integrate with Telegram and notify new subdomains founded , open ports and vulnerabilitys automatic.
 
 # Flowchart 
-![c4mund0n60 flowchart](flowchart.drawio.png)
+![c4mund0n60 flowchart](assets/flowchart.drawio.png)
+
 # Installation Guide
 ## **THE STEP 2.3 IS MANDATORY**
 ### Step 1 - Download and Build docker image
@@ -33,10 +34,14 @@ ELASTIC_PASS: "pass"
 
 **In c4mund0n60 tool folder**
 
-```docker run -p 9200:9200 -p 9600:9600 -v ./configuration/opensearch-data:/usr/share/opensearch/data -e "discovery.type=single-node" --name opensearch-node -d opensearchproject/opensearch:latest```
+```
+docker run -p 9200:9200 -p 9600:9600 -v ./configuration/opensearch-data:/usr/share/opensearch/data -e "discovery.type=single-node" --name opensearch-node -d opensearchproject/opensearch:latest
+```
 
 #### Step 2.2 - Python dependencies
-`pip3 install -r requirements.txt`
+```
+pip3 install -r requirements.txt
+```
 
 #### Step 2.3 - Set your keys in ./configuration/config.txt
 ```
@@ -55,20 +60,21 @@ VTAPIKEY: "<vtapi-key>"
 #CHAOS API KEY
 CHAOSKEY: "<chaos-key>"
 ```
+
 # How to use
 ### For init a project , follow the instructions in output for insert domains in domains.txt
-`
+```
 sh initProject.sh <project-name>
-`
+```
 ### For init a project with domain list of bug bounty program or blackbox pentest
 ```
 sh initProject.sh <project-name> <domains.txt>
 python3 main.py <project-name>
 ```
 ### For delete ALL INDICES about a project
-`
-python3 main.py <project-name>
-`
+```
+python3 main.py <project-name> --delete
+```
 
 # Attachments
 <details>
@@ -101,7 +107,9 @@ python3 main.py <project-name>
   ``` 
   > **Give permission for current user**
 
-  `sudo usermod -aG docker $USER`
+  ```
+  sudo usermod -aG docker $USER
+  ```
 
   >**Initialize docker service**
   ```
@@ -118,7 +126,9 @@ python3 main.py <project-name>
   #### Extra
   > **docker command line for view the complete table ‘COMMAND’ of all running containers**
 
-  `for i in $(docker ps --format "table {{.ID}}" | grep -v "CONTAINER ID");do docker inspect $i; done | jq --arg separator $'********' '$separator + .[].Config.WorkingDir, .[].Config.Cmd, .[].Config.Entrypoint' | grep '********'`
+  ```
+  for i in $(docker ps --format "table {{.ID}}" | grep -v "CONTAINER ID");do docker inspect $i; done | jq --arg separator $'********' '$separator + .[].Config.WorkingDir, .[].Config.Cmd, .[].Config.Entrypoint' | grep '********'
+  ```
 
 </details>
 
@@ -134,3 +144,16 @@ python3 main.py <project-name>
   - https://github.com/tomnomnom/waybackurls
   - https://github.com/projectdiscovery/katana
   - https://github.com/projectdiscovery/nuclei
+
+# TO DO list
+- [ ] Create OSINT index and implement mecanism/tools that retrieve infos like emails, usernames, buckets, social midia profiles, github repos, files: docx, pdf, mp4, etc.
+- [ ] Implement support a config files for the known tools used in c4mund0n60. e.g. `amass subcommand -config config.yaml`. This *config.yaml* can be found in ./configuration/tools/ folder.
+- [ ] Create a mecanism that identify and ignore (don't do any enumeration) of IP's , Netblocks and CIDR from CloudFlare, Akamai, CDN's , etc.
+- [ ] Implement dork google search with Google CSE (Custom Search Engine) (https://github.com/AssassinUKG/googleSearcher).
+- [ ] Implement regex analysis in JS files for search users, passwords and secrets things (https://adityashende17.medium.com/how-to-js-for-bug-bounties-edition-2023-7108b56d9db6).
+- [ ] Implement SSL Certificates extration and DNS Names from ASN. (https://twitter.com/pdnuclei/status/1676184515021029377).
+- [ ] Implement nrich tool (https://asciinema.org/a/468923).
+- [ ] Implement a mecanism that get a list fo root domains from a CIDR block (https://twitter.com/hakluke/status/1665931596631875584).
+- [ ] Implement search.censys.io or use tools like sublist3r/amass for this.
+- [ ] Implement urlscan.io.
+- [ ] Implement crackmapexec for brute force services and another things.
