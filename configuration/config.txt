@@ -1,14 +1,14 @@
 # TELEGRAM BOT
-TELEGRAM_ApiToken: "<apitoken-key>"
-TELEGRAM_chatID: "<chatID-key>"
+TELEGRAM_ApiToken: "6306766123:AAHPJEvdn_-zxkiNqyazgNQwdm4kvYV1AWY"
+TELEGRAM_chatID: "-1001761399077"
 
 # ELASTIC
 ELASTIC_URLBASE: "https://localhost:9200/"
-ELASTIC_USER: "user"
-ELASTIC_PASS: "pass"
+ELASTIC_USER: "admin"
+ELASTIC_PASS: "admin"
 
 #VIRUS TOTAL API KEY
-VTAPIKEY: "<vtapi-key>"
+VTAPIKEY: "d343dcd231e590d255bb9c1f7c24ae3e48b89bb0addaa1b202ba4f283bf1fb8a"
 
 #CHAOS API KEY
-CHAOSKEY: "<chaos-key>"
+CHAOSKEY: "DtXhXetaCioaR3gEURSCxIgMXSw8d0M6Q2IzmSRMvXCZCoscUAJK4Ux5zbL1AL7O"
