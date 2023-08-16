@@ -23,12 +23,13 @@ from elasticInstance import getURLBase
 from elasticInstance import getUser
 from elasticInstance import getPass
 
-# GET IP UTILS FOR ALL SCRIPTS
+# GET IP UTILS AND TIMEZONECONVERTER FOR ALL SCRIPTS
 sys.path.append('helpers/scripts')
 from ipUtils import RDAPgetStartAndEndAddress
 from ipUtils import rdap_domain
 from ipUtils import RDAPgetStartAndEndAddress
 from ipUtils import ip_block_to_cidr
+from converTimezone import convertToUTC
 
 # GET parallels functions
 sys.path.append('helpers/parallel')
@@ -48,7 +49,7 @@ url_post = getURLBase()+target+'-subdomain/_doc?refresh'
 url_applications = getURLBase()+target+'-webenum/_search'
 url_web = getURLBase()+target+'-webvuln/_search'
 auth=(getUser(), getPass())
-hora = strftime("%Y-%m-%dT%H:%M:%S")
+hora = convertToUTC(strftime("%Y-%m-%dT%H:%M:%S%Z"))
 scanner = 'c4mund0n60-monitoring'
 x = str(uuid.uuid1()).split('-')[0]
 container_name = target+'-'+x+'-'+scanner
@@ -69,7 +70,7 @@ def create_indices():
         # dataCreateOsint = {
         #     "mappings":{
         #         "properties":{
-        #         "@timestamp":{"type":"date"},
+        #         "@timestamp": {"type":"date"},
         #         "server.address": {"type":"keyword"},
         #         "server.domain": {"type":"keyword"},
         #                 "server.nameserver": {"type":"keyword"},
@@ -87,10 +88,7 @@ def create_indices():
         dataCreateSubdomain = {
             "mappings":{
                 "properties":{
-                "@timestamp":{
-                    "type":"date",
-                    "format": "strict_date_optional_time||epoch_millis"
-                    },
+                "@timestamp": {"type":"date"},
                 "server.address": {"type":"keyword"},
                 "server.domain": {"type":"keyword"},
                         "server.nameserver": {"type":"keyword"},
@@ -111,10 +109,7 @@ def create_indices():
         dataCreatePortscan = {
             "mappings":{
                 "properties":{
-                "@timestamp":{
-                    "type":"date",
-                    "format": "strict_date_optional_time||epoch_millis"
-                    },
+                "@timestamp": {"type":"date"},
                 "server.address": {"type":"keyword"},
                 "network.protocol": {"type":"keyword"},
                 "server.ip": {"type":"ip"},
@@ -140,10 +135,7 @@ def create_indices():
         dataCreateWebenum = {
             "mappings":{
                 "properties":{
-                    "@timestamp":{
-                        "type":"date",
-                        "format": "strict_date_optional_time||epoch_millis"
-                        },
+                "@timestamp": {"type":"date"},
                     "server.address": {"type":"keyword"},
                             "server.domain": {"type":"keyword"},
                     "server.ip": {"type":"ip"},
@@ -165,10 +157,7 @@ def create_indices():
         dataCreateWebvuln = {
             "mappings":{
                 "properties":{
-                    "@timestamp":{
-                        "type":"date",
-                        "format": "strict_date_optional_time||epoch_millis"
-                        },
+                "@timestamp": {"type":"date"},
                     "server.address": {"type":"keyword"},
                             "server.domain": {"type":"keyword"},
                     "server.ip": {"type":"ip"},
@@ -194,10 +183,7 @@ def create_indices():
         dataCreateInfravuln = {
             "mappings":{
                 "properties":{
-                    "@timestamp":{
-                        "type":"date",
-                        "format": "strict_date_optional_time||epoch_millis"
-                        },
+                "@timestamp": {"type":"date"},
                     "server.address": {"type":"keyword"},
                             "server.domain": {"type":"keyword"},
                     "server.ip": {"type":"ip"},
@@ -223,7 +209,7 @@ def create_indices():
         return 0
     
 def executa():
-    url_in_executa_scope = str(getURLBase()+target+'-subdomain-temp')
+    url_in_executa_scope = getURLBase()+target+'-subdomain-temp'
     
     #DELETE INDEX SUBDOMAINS TEMP
     print("[+] Delete index SUBDOMAIN TEMP")
@@ -234,7 +220,7 @@ def executa():
     dataCreate = {
         "mappings":{
             "properties":{
-            "@timestamp":{"type":"date"},
+            "@timestamp": {"type":"date"},
             "server.address": {"type":"keyword"},
             "server.domain": {"type":"keyword"},
             "server.nameserver": {"type":"keyword"},
@@ -423,12 +409,18 @@ def menu(): #melhorar esse menu
     print('Delete project: python3 ' + sys.argv[0] + ' <project>' + ' --delete')
     exit(0)
 def deleteProject(project):
+    projectPath = os.getcwd()+'/targets/'+project
+    if os.path.exists(projectPath):
+        print("Deleting all folders and files about "+project)
+        shutil.rmtree(projectPath)
+    
     url_base = getURLBase()+project
     url_subdomain = getURLBase()+project+'-subdomain'
     url_portscan = getURLBase()+project+'-portscan'
     url_webenum = getURLBase()+project+'-webenum'
     url_webvuln = getURLBase()+project+'-webvuln'
     url_infravuln = getURLBase()+project+'-infravuln'
+    
     try:
         requests.delete(url_base, headers=headers, auth=auth, verify=False)
         requests.delete(url_subdomain, headers=headers, auth=auth, verify=False)
@@ -436,18 +428,11 @@ def deleteProject(project):
         requests.delete(url_webenum, headers=headers, auth=auth, verify=False)
         requests.delete(url_webvuln, headers=headers, auth=auth, verify=False)
         requests.delete(url_infravuln, headers=headers, auth=auth, verify=False)
+        print("Deleting all "+project+" indexes")
     except requests.ConnectionError as e:
         print("Delete error: ", e)
     
-    try:
-        projectPath = os.getcwd()+'/targets/'+project
-        if os.path.exists(projectPath):
-            shutil.rmtree(projectPath)
-            return 1
-    except:
-        print("Error in delete project folder and files")
-        return 0
-        
+    return 1
 def verifyProjectExist(project):
     path = os.getcwd()+'/targets/'+project
     if os.path.exists(path):
@@ -459,40 +444,38 @@ def verifyProjectExist(project):
 def main():
     project = sys.argv[1]
     if (verifyProjectExist(project)) == 0:
-        menu()       
-    try:
-        if len(sys.argv) == 2:
-            pattern = r'^[a-zA-Z0-9]+$'
-            if re.match(pattern, sys.argv[1]):
-                create_indices()
-                executa()
-                consulta_subdomain_base()
-                consulta_subdomain_novos()
-                parse()
-            else:
-                print("caracter in argument not permitted project name NEED follow this regular expression: ^[a-zA-Z0-9]+$ \n")
-                menu()
-        elif (len(sys.argv) == 1 or sys.argv[1] == '' or sys.argv[1] == ' ' or sys.argv[1] == None):
-            menu()
-        elif (len(sys.argv) == 2 and sys.argv[2] != '--delete'):
-            menu()
-        elif (len(sys.argv) > 1 and sys.argv[2] == '--delete'):
-            project = sys.argv[1]
-            print("Deleting all "+project+" project indexes")
-            pattern = r'^[a-zA-Z0-9]+$'
-            if re.match(pattern, project):
-                deleteProject(project)
-            print("Deleting all folders and files about "+project)
-            print("Create a new project with this command: " + "\n")
-            print("sh "+os.getcwd()+"/initProject.sh "+project+ "\n")
-        elif (len(sys.argv) > 2):
-            menu()
-        elif (sys.argv[1] == '--help' or sys.argv[1] == '-h' or sys.argv[2] == '--help' or sys.argv[2] == '-h'):
-            menu()
+        print("Project " +project+ " not exist")
+        print("Create a new project with this command: " + "\n")
+        print("sh "+os.getcwd()+"/initProject.sh "+project)
+        exit(0)
+    if len(sys.argv) == 2:
+        pattern = r'^[a-zA-Z0-9]+$'
+        if re.match(pattern, sys.argv[1]):
+            create_indices()
+            executa()
+            consulta_subdomain_base()
+            consulta_subdomain_novos()
+            parse()
         else:
-            print("An error occurred during c4mund0n60 execution \n")
+            print("caracter in argument not permitted project name NEED follow this regular expression: ^[a-zA-Z0-9]+$ \n")
             menu()
-    except:
+    elif (len(sys.argv) == 1 or sys.argv[1] == '' or sys.argv[1] == ' ' or sys.argv[1] == None):
+        menu()
+    elif (len(sys.argv) == 2 and sys.argv[2] != '--delete'):
+        menu()
+    elif (len(sys.argv) > 1 and sys.argv[2] == '--delete'):
+        project = sys.argv[1]
+        pattern = r'^[a-zA-Z0-9]+$'
+        if re.match(pattern, project):
+            deleteProject(project)
+        print("Create a new project with this command: " + "\n")
+        print("sh "+os.getcwd()+"/initProject.sh "+project)
+    elif (len(sys.argv) > 2):
+        menu()
+    elif (sys.argv[1] == '--help' or sys.argv[1] == '-h' or sys.argv[2] == '--help' or sys.argv[2] == '-h'):
+        menu()
+    else:
+        print("An error occurred during c4mund0n60 execution \n")
         menu()
 
 if __name__== '__main__':
