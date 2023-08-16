@@ -62,146 +62,152 @@ dic_applications = {}
 
 # FLOW EXECUTION 
 def create_indices():
-    #CREATE index OSINT
-    # print("[+] Create index OSINT")
-    # url_osint =  str(getURLBase()+target+'-osint')
-    # dataCreateOsint = {
-    #     "mappings":{
-    #         "properties":{
-    #         "@timestamp":{"type":"date"},
-    #         "server.address": {"type":"keyword"},
-    #         "server.domain": {"type":"keyword"},
-    #                 "server.nameserver": {"type":"keyword"},
-    #         "server.ip": {"type":"ip"},
-    #                 "server.ipblock": {"type":"keyword"},
-    #         "vulnerability.scanner.vendor": {"type":"keyword"}
-    #         }
-    #     }
-    # }
-    # rCreateOsint = requests.put(url=url_osint,headers=headers,auth=auth,data=json.dumps(dataCreateOsint),verify=False)
-    
-    #CREATE index SUBDOMAIN
-    print("[+] Create index SUBDOMAIN")
-    url_subdomain = str(getURLBase()+target+'-subdomain')
-    dataCreateSubdomain = {
-        "mappings":{
-            "properties":{
-            "@timestamp":{"type":"date"},
-            "server.address": {"type":"keyword"},
-            "server.domain": {"type":"keyword"},
-                    "server.nameserver": {"type":"keyword"},
-            "server.ip": {"type":"ip"},
-                    "server.ipblock": {"type":"keyword"},
-                    "server.startAddress": {"type":"ip"},
-                    "server.endAddress": {"type":"ip"},
-                    "server.cidr": {"type":"keyword"},
-            "vulnerability.scanner.vendor": {"type":"keyword"}
-            }
-        }
-    }
-    rCreateSubdomain = requests.put(url=url_subdomain,headers=headers,auth=auth,data=json.dumps(dataCreateSubdomain),verify=False)
-    
-    #CREATE index PORTSCAN
-    print("[+] Create index PORT SCANNING")
-    url_portscan =  str(getURLBase()+target+'-portscan')
-    dataCreatePortscan = {
-        "mappings":{
-            "properties":{
-            "@timestamp":{"type":"date"},
-            "server.address": {"type":"keyword"},
-            "network.protocol": {"type":"keyword"},
-            "server.ip": {"type":"ip"},
-                    "server.port": {"type":"long"},
-                    "server.startAddress": {"type":"ip"},
-                    "server.endAddress": {"type":"ip"},
-                    "server.ipblock": {"type":"keyword"},
-                            "server.cidr": {"type":"keyword"},
-                    "service.name": {"type":"keyword"},
-            "service.state": {"type":"keyword"},
-                    "application.version.number": { "type":"keyword"},
-                    "network.transport": {"type":"keyword"},
-                "network.type": {"type":"keyword"},
-            "vulnerability.scanner.vendor": {"type":"keyword"}
-            }
-        }
-    }
-    rCreatePortScan = requests.put(url=url_portscan,headers=headers,auth=auth,data=json.dumps(dataCreatePortscan),verify=False)
-    
-    #CREATE index WEB ENUM
-    print("[+] Create index WEB ENUM")
-    url_webenum =  str(getURLBase()+target+'-webenum')
-    dataCreateWebenum = {
-        "mappings":{
-            "properties":{
+    try:
+        #CREATE index OSINT
+        # print("[+] Create index OSINT")
+        # url_osint =  str(getURLBase()+target+'-osint')
+        # dataCreateOsint = {
+        #     "mappings":{
+        #         "properties":{
+        #         "@timestamp":{"type":"date"},
+        #         "server.address": {"type":"keyword"},
+        #         "server.domain": {"type":"keyword"},
+        #                 "server.nameserver": {"type":"keyword"},
+        #         "server.ip": {"type":"ip"},
+        #                 "server.ipblock": {"type":"keyword"},
+        #         "vulnerability.scanner.vendor": {"type":"keyword"}
+        #         }
+        #     }
+        # }
+        # rCreateOsint = requests.put(url=url_osint,headers=headers,auth=auth,data=json.dumps(dataCreateOsint),verify=False)
+        
+        #CREATE index SUBDOMAIN
+        print("[+] Create index SUBDOMAIN")
+        url_subdomain = str(getURLBase()+target+'-subdomain')
+        dataCreateSubdomain = {
+            "mappings":{
+                "properties":{
                 "@timestamp":{"type":"date"},
                 "server.address": {"type":"keyword"},
-                        "server.domain": {"type":"keyword"},
+                "server.domain": {"type":"keyword"},
+                        "server.nameserver": {"type":"keyword"},
                 "server.ip": {"type":"ip"},
-                        "server.port": {"type":"long"},
-                        "network.protocol": {"type":"keyword"},
-                        "url.path": {"type":"keyword"},
-                        "http.response.status_code": {"type":"long"},
-                        "url.original": {"type":"keyword"},
-                    "url.full": {"type":"keyword"},
+                        "server.ipblock": {"type":"keyword"},
+                        "server.startAddress": {"type":"ip"},
+                        "server.endAddress": {"type":"ip"},
+                        "server.cidr": {"type":"keyword"},
                 "vulnerability.scanner.vendor": {"type":"keyword"}
+                }
             }
         }
-    }
-    rCreateWebenum = requests.put(url=url_webenum,headers=headers,auth=auth,data=json.dumps(dataCreateWebenum),verify=False)
-    
-    #CREATE index WEB VULN
-    print("[+] Create index WEB VULN")
-    url_webvuln =  str(getURLBase()+target+'-webvuln')
-    dataCreateWebvuln = {
-        "mappings":{
-            "properties":{
+        rCreateSubdomain = requests.put(url=url_subdomain,headers=headers,auth=auth,data=json.dumps(dataCreateSubdomain),verify=False)
+        
+        #CREATE index PORTSCAN
+        print("[+] Create index PORT SCANNING")
+        url_portscan =  str(getURLBase()+target+'-portscan')
+        dataCreatePortscan = {
+            "mappings":{
+                "properties":{
                 "@timestamp":{"type":"date"},
                 "server.address": {"type":"keyword"},
-                        "server.domain": {"type":"keyword"},
+                "network.protocol": {"type":"keyword"},
                 "server.ip": {"type":"ip"},
                         "server.port": {"type":"long"},
-                        "network.protocol": {"type":"keyword"},
+                        "server.startAddress": {"type":"ip"},
+                        "server.endAddress": {"type":"ip"},
+                        "server.ipblock": {"type":"keyword"},
+                                "server.cidr": {"type":"keyword"},
                         "service.name": {"type":"keyword"},
-                        "url.path": {"type":"keyword"},
-                        "http.response.status_code": {"type":"long"},
-                        "vulnerability.description": {"type":"keyword"},
-                        "vulnerability.name": {"type":"keyword"},
-                        "vulnerability.severity": {"type":"keyword"},
-                        "url.original": {"type":"keyword"},
-                    "url.full": {"type":"keyword"},
+                "service.state": {"type":"keyword"},
+                        "application.version.number": { "type":"keyword"},
+                        "network.transport": {"type":"keyword"},
+                    "network.type": {"type":"keyword"},
                 "vulnerability.scanner.vendor": {"type":"keyword"}
+                }
             }
         }
-    }
-    rCreateWebvuln = requests.put(url=url_webvuln,headers=headers,auth=auth,data=json.dumps(dataCreateWebvuln),verify=False)
-    
-    #CREATE index INFRA VULN
-    print("[+] Create index INFRA VULN")
-    url_infravuln =  str(getURLBase()+target+'-infravuln')
-    dataCreateInfravuln = {
-        "mappings":{
-            "properties":{
-                "@timestamp":{"type":"date"},
-                "server.address": {"type":"keyword"},
-                        "server.domain": {"type":"keyword"},
-                "server.ip": {"type":"ip"},
-                        "server.port": {"type":"long"},
-                        "network.protocol": {"type":"keyword"},
-                        "service.name": {"type":"keyword"},
-                        "url.path": {"type":"keyword"},
-                        "http.response.status_code": {"type":"long"},
-                        "vulnerability.description": {"type":"keyword"},
-                        "vulnerability.name": {"type":"keyword"},
-                        "vulnerability.severity": {"type":"keyword"},
-                        "url.original": {"type":"keyword"},
-                    "url.full": {"type":"keyword"},
-                "vulnerability.scanner.vendor": {"type":"keyword"}
+        rCreatePortScan = requests.put(url=url_portscan,headers=headers,auth=auth,data=json.dumps(dataCreatePortscan),verify=False)
+        
+        #CREATE index WEB ENUM
+        print("[+] Create index WEB ENUM")
+        url_webenum =  str(getURLBase()+target+'-webenum')
+        dataCreateWebenum = {
+            "mappings":{
+                "properties":{
+                    "@timestamp":{"type":"date"},
+                    "server.address": {"type":"keyword"},
+                            "server.domain": {"type":"keyword"},
+                    "server.ip": {"type":"ip"},
+                            "server.port": {"type":"long"},
+                            "network.protocol": {"type":"keyword"},
+                            "url.path": {"type":"keyword"},
+                            "http.response.status_code": {"type":"long"},
+                            "url.original": {"type":"keyword"},
+                        "url.full": {"type":"keyword"},
+                    "vulnerability.scanner.vendor": {"type":"keyword"}
+                }
             }
         }
-    }
-    rCreateInfravuln = requests.put(url=url_infravuln,headers=headers,auth=auth,data=json.dumps(dataCreateInfravuln),verify=False)
+        rCreateWebenum = requests.put(url=url_webenum,headers=headers,auth=auth,data=json.dumps(dataCreateWebenum),verify=False)
+        
+        #CREATE index WEB VULN
+        print("[+] Create index WEB VULN")
+        url_webvuln =  str(getURLBase()+target+'-webvuln')
+        dataCreateWebvuln = {
+            "mappings":{
+                "properties":{
+                    "@timestamp":{"type":"date"},
+                    "server.address": {"type":"keyword"},
+                            "server.domain": {"type":"keyword"},
+                    "server.ip": {"type":"ip"},
+                            "server.port": {"type":"long"},
+                            "network.protocol": {"type":"keyword"},
+                            "service.name": {"type":"keyword"},
+                            "url.path": {"type":"keyword"},
+                            "http.response.status_code": {"type":"long"},
+                            "vulnerability.description": {"type":"keyword"},
+                            "vulnerability.name": {"type":"keyword"},
+                            "vulnerability.severity": {"type":"keyword"},
+                            "url.original": {"type":"keyword"},
+                        "url.full": {"type":"keyword"},
+                    "vulnerability.scanner.vendor": {"type":"keyword"}
+                }
+            }
+        }
+        rCreateWebvuln = requests.put(url=url_webvuln,headers=headers,auth=auth,data=json.dumps(dataCreateWebvuln),verify=False)
+        
+        #CREATE index INFRA VULN
+        print("[+] Create index INFRA VULN")
+        url_infravuln =  str(getURLBase()+target+'-infravuln')
+        dataCreateInfravuln = {
+            "mappings":{
+                "properties":{
+                    "@timestamp":{"type":"date"},
+                    "server.address": {"type":"keyword"},
+                            "server.domain": {"type":"keyword"},
+                    "server.ip": {"type":"ip"},
+                            "server.port": {"type":"long"},
+                            "network.protocol": {"type":"keyword"},
+                            "service.name": {"type":"keyword"},
+                            "url.path": {"type":"keyword"},
+                            "http.response.status_code": {"type":"long"},
+                            "vulnerability.description": {"type":"keyword"},
+                            "vulnerability.name": {"type":"keyword"},
+                            "vulnerability.severity": {"type":"keyword"},
+                            "url.original": {"type":"keyword"},
+                        "url.full": {"type":"keyword"},
+                    "vulnerability.scanner.vendor": {"type":"keyword"}
+                }
+            }
+        }
+        rCreateInfravuln = requests.put(url=url_infravuln,headers=headers,auth=auth,data=json.dumps(dataCreateInfravuln),verify=False)
+        
+        return 1
+    except Error as e:
+        print("Erro em criar indices")
+        print("Error: ", e)
+        return 0
     
-    return 0
 def executa():
     url_in_executa_scope = str(getURLBase()+target+'-subdomain-temp')
     
@@ -418,6 +424,17 @@ def deleteProject(project):
         requests.delete(url_infravuln, headers=headers, auth=auth, verify=False)
     except requests.ConnectionError as e:
         print("Delete error: ", e)
+    
+    try:
+        projectPath = os.getcwd()+'/targets/'+project
+        if os.path.exists(projectPath):
+            shutil.rmtree(projectPath)
+            return 1
+    except:
+        print("Error in delete project folder and files")
+        return 0
+
+        
 def verifyProjectExist(project):
     path = os.getcwd()+'/targets/'+project
     if os.path.exists(path):
@@ -429,8 +446,7 @@ def verifyProjectExist(project):
 def main():
     project = sys.argv[1]
     if (verifyProjectExist(project)) == 0:
-        menu()
-            
+        menu()       
     try:
         if len(sys.argv) == 2:
             pattern = r'^[a-zA-Z0-9]+$'
@@ -449,11 +465,12 @@ def main():
             menu()
         elif (len(sys.argv) > 1 and sys.argv[2] == '--delete'):
             project = sys.argv[1]
-            print("Deleting all "+project+" project indexes" + "\n")
+            print("Deleting all "+project+" project indexes")
             pattern = r'^[a-zA-Z0-9]+$'
             if re.match(pattern, project):
                 deleteProject(project)
-            print("Create a new project with this command: ")
+            print("Deleting all folders and files about "+project)
+            print("Create a new project with this command: " + "\n")
             print("sh "+os.getcwd()+"/initProject.sh "+project+ "\n")
         elif (len(sys.argv) > 2):
             menu()

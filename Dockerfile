@@ -30,7 +30,7 @@ RUN go clean -modcache
 RUN go env -w GO111MODULE=auto
 
 #SUBDOMAIN TOOLS
-RUN apt install sublist3r -y
+# RUN apt install sublist3r -y
 
 RUN go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 RUN mv /root/go/bin/subfinder /usr/bin/
@@ -47,6 +47,8 @@ RUN mv /root/go/bin/chaos /usr/bin
 #IP UTILS AND PORTSCAN TOOLS
 RUN go install -v github.com/openrdap/rdap/cmd/rdap@master
 RUN mv /root/go/bin/rdap /usr/bin/
+
+# RUN apt install nmap -y
 
 # WEB ENUMERATION TOOLS
 RUN go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
@@ -66,7 +68,6 @@ RUN mv /root/go/bin/nuclei /usr/bin/
 RUN nuclei -up
 RUN nuclei -ut
 
-# RUN apt install nmap -y
 # RUN apt install nikto -y
 
 ## BRUTE FORCE TOOLS

@@ -40,6 +40,7 @@ docker run -p 9200:9200 -p 9600:9600 -v ./configuration/opensearch-data:/usr/sha
 
 #### Step 2.2 - Python dependencies
 ```
+sudo apt install python3-pip
 pip3 install -r requirements.txt
 ```
 
@@ -60,6 +61,10 @@ VTAPIKEY: "<vtapi-key>"
 #CHAOS API KEY
 CHAOSKEY: "<chaos-key>"
 ```
+- For create a telegram bot and get apitoken and chatID, this video is very useful (https://youtu.be/6xfUG8bghCw)
+- The default creds for self manage OpenSearch instance is admin:admin (Change is recommended)
+- Get VTAPIKEY for free: https://www.virustotal.com/gui/join-us
+- Get CHAOSAPIKEY for free: https://chaos.projectdiscovery.io
 
 # How to use
 ### For init a project , follow the instructions in output for insert domains in domains.txt
@@ -145,15 +150,25 @@ python3 main.py <project-name> --delete
   - https://github.com/projectdiscovery/katana
   - https://github.com/projectdiscovery/nuclei
 
-# TO DO list
-- [ ] Create OSINT index and implement mecanism/tools that retrieve infos like emails, usernames, buckets, social midia profiles, github repos, files: docx, pdf, mp4, etc.
-- [ ] Implement support a config files for the known tools used in c4mund0n60. e.g. `amass subcommand -config config.yaml`. This *config.yaml* can be found in ./configuration/tools/ folder.
-- [ ] Create a mecanism that identify and ignore (don't do any enumeration) of IP's , Netblocks and CIDR from CloudFlare, Akamai, CDN's , etc.
-- [ ] Implement dork google search with Google CSE (Custom Search Engine) (https://github.com/AssassinUKG/googleSearcher).
+
+# TO DO LIST - UPDATED 16/08/2023
+### TO DO LIST FOR ACTIVE ENUMERATION THINGS
+- [ ] Implement cariddi tool (https://github.com/edoardottt/cariddi).
+- [ ] Implement a mecanism that get a list of root domains from a CIDR block (https://twitter.com/hakluke/status/1665931596631875584).
 - [ ] Implement regex analysis in JS files for search users, passwords and secrets things (https://adityashende17.medium.com/how-to-js-for-bug-bounties-edition-2023-7108b56d9db6).
+- [ ] Implement crackmapexec for brute force services and another things.
+
+### TO DO LIST FOR OSINT / PASSIVE ENUMERATION THINGS
+- [ ] implement https://community.riskiq.com/ for more enumeration subdomains.
+- [ ] Create OSINT index and implement mecanism/tools that retrieve infos like emails, usernames, buckets, social midia profiles, github repos, files: docx, pdf, mp4, etc.
+- [ ] Implement dork google search with Google CSE (Custom Search Engine) (https://github.com/AssassinUKG/googleSearcher).
+- [ ] Implement Linkedint (https://github.com/vysecurity/LinkedInt) **MAYBE**
+- [ ] Implement urlscan.io.
+- [ ] Implement search.censys.io or use tools like sublist3r/amass for this.
 - [ ] Implement SSL Certificates extration and DNS Names from ASN. (https://twitter.com/pdnuclei/status/1676184515021029377).
 - [ ] Implement nrich tool (https://asciinema.org/a/468923).
-- [ ] Implement a mecanism that get a list of root domains from a CIDR block (https://twitter.com/hakluke/status/1665931596631875584).
-- [ ] Implement search.censys.io or use tools like sublist3r/amass for this.
-- [ ] Implement urlscan.io.
-- [ ] Implement crackmapexec for brute force services and another things.
+
+### TO DO LIST FOR MISCELLANEOUS THINGS
+- [ ] Reasearch a way for smaller execution time of amass
+- [ ] Implement support a config files for the known tools used in c4mund0n60. e.g. `amass subcommand -config config.yaml`. This *config.yaml* can be found in ./configuration/tools/ folder.
+- [ ] Create a mecanism that identify and ignore (don't do any enumeration) of IP's , Netblocks and CIDR from CloudFlare, Akamai, CDN's , etc.
