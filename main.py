@@ -433,7 +433,6 @@ def deleteProject(project):
     except:
         print("Error in delete project folder and files")
         return 0
-
         
 def verifyProjectExist(project):
     path = os.getcwd()+'/targets/'+project

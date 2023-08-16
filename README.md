@@ -85,7 +85,6 @@ python3 main.py <project-name> --delete
 # Attachments
 <details>
   <summary>Setup Docker Engine (Native Docker) in WSL 2</summary> 
-
   >**Install need packages**
   ```
   sudo apt update && sudo apt upgrade
@@ -135,7 +134,9 @@ python3 main.py <project-name> --delete
   ```
   for i in $(docker ps --format "table {{.ID}}" | grep -v "CONTAINER ID");do docker inspect $i; done | jq --arg separator $'********' '$separator + .[].Config.WorkingDir, .[].Config.Cmd, .[].Config.Entrypoint' | grep '********'
   ```
+</details>
 
+<details>
   <summary>How to change default password of Opensearch instance</summary>
   in progress
 </details>
