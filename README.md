@@ -40,8 +40,7 @@ docker run -p 9200:9200 -p 9600:9600 -v ./configuration/opensearch-data:/usr/sha
 
 #### Step 2.2 - Parallel and Python dependencies
 ```
-sudo apt install parallel
-sudo apt install python3-pip
+sudo apt install python3-pip parallel
 pip3 install -r requirements.txt
 ```
 
