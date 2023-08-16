@@ -136,6 +136,8 @@ python3 main.py <project-name> --delete
   for i in $(docker ps --format "table {{.ID}}" | grep -v "CONTAINER ID");do docker inspect $i; done | jq --arg separator $'********' '$separator + .[].Config.WorkingDir, .[].Config.Cmd, .[].Config.Entrypoint' | grep '********'
   ```
 
+  <summary>How to change default password of Opensearch instance</summary>
+  in progress
 </details>
 
 # THANKS
