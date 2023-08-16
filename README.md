@@ -84,7 +84,8 @@ python3 main.py <project-name> --delete
 
 # Attachments
 <details>
-  <summary>Setup Docker Engine (Native Docker) in WSL 2</summary> 
+  <summary>Setup Docker Engine (Native Docker) in WSL 2</summary>
+  
   >**Install need packages**
   ```
   sudo apt update && sudo apt upgrade
