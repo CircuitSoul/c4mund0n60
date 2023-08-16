@@ -68,6 +68,7 @@ CHAOSKEY: "<chaos-key>"
 
 # How to use
 ### For init a project , follow the instructions in output for insert domains in domains.txt
+##### Obs: Grants that your current user can do exec command docker (check  your permissions), else exec with sudo
 ```
 sh initProject.sh <project-name>
 ```
