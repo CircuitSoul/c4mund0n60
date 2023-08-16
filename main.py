@@ -87,7 +87,10 @@ def create_indices():
         dataCreateSubdomain = {
             "mappings":{
                 "properties":{
-                "@timestamp":{"type":"date"},
+                "@timestamp":{
+                    "type":"date",
+                    "format": "strict_date_optional_time||epoch_millis"
+                    },
                 "server.address": {"type":"keyword"},
                 "server.domain": {"type":"keyword"},
                         "server.nameserver": {"type":"keyword"},
@@ -108,7 +111,10 @@ def create_indices():
         dataCreatePortscan = {
             "mappings":{
                 "properties":{
-                "@timestamp":{"type":"date"},
+                "@timestamp":{
+                    "type":"date",
+                    "format": "strict_date_optional_time||epoch_millis"
+                    },
                 "server.address": {"type":"keyword"},
                 "network.protocol": {"type":"keyword"},
                 "server.ip": {"type":"ip"},
@@ -134,7 +140,10 @@ def create_indices():
         dataCreateWebenum = {
             "mappings":{
                 "properties":{
-                    "@timestamp":{"type":"date"},
+                    "@timestamp":{
+                        "type":"date",
+                        "format": "strict_date_optional_time||epoch_millis"
+                        },
                     "server.address": {"type":"keyword"},
                             "server.domain": {"type":"keyword"},
                     "server.ip": {"type":"ip"},
@@ -156,7 +165,10 @@ def create_indices():
         dataCreateWebvuln = {
             "mappings":{
                 "properties":{
-                    "@timestamp":{"type":"date"},
+                    "@timestamp":{
+                        "type":"date",
+                        "format": "strict_date_optional_time||epoch_millis"
+                        },
                     "server.address": {"type":"keyword"},
                             "server.domain": {"type":"keyword"},
                     "server.ip": {"type":"ip"},
@@ -182,7 +194,10 @@ def create_indices():
         dataCreateInfravuln = {
             "mappings":{
                 "properties":{
-                    "@timestamp":{"type":"date"},
+                    "@timestamp":{
+                        "type":"date",
+                        "format": "strict_date_optional_time||epoch_millis"
+                        },
                     "server.address": {"type":"keyword"},
                             "server.domain": {"type":"keyword"},
                     "server.ip": {"type":"ip"},
@@ -203,9 +218,8 @@ def create_indices():
         rCreateInfravuln = requests.put(url=url_infravuln,headers=headers,auth=auth,data=json.dumps(dataCreateInfravuln),verify=False)
         
         return 1
-    except Error as e:
-        print("Erro em criar indices")
-        print("Error: ", e)
+    except:
+        print("Error in create_indices function")
         return 0
     
 def executa():
