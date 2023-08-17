@@ -174,7 +174,7 @@ python3 main.py <project-name> --delete
 ### TO DO LIST FOR OSINT / PASSIVE ENUMERATION THINGS
 - [ ] Implement https://community.riskiq.com/ for more enumeration subdomains.
 - [ ] Implement enumeration from BufferOver.run ```curl -s https://dns.bufferover.run/dns?q=.target.com | jq -r .FDNS_A[] | cut -d',' -f2 | sort -u```
-- [ ] Implement enumeration from Riddler.io ```curl -s https://dns.bufferover.run/dns?q=.target.com | jq -r .FDNS_A[] | cut -d',' -f2 | sort -u```
+- [ ] Implement enumeration from Riddler.io ```curl -s "https://riddler.io/search/exportcsv?q=pld:target.com" | grep -Po "(([\w.-]*)\.([\w]*)\.([A-z]))\w+" | sort -u ```
 - [ ] Implement enumeration from CertSpotter ```curl -s "https://certspotter.com/api/v1/issuances?domain=target.com&include_subdomains=true&expand=dns_names" | jq .[].dns_names | grep -Po "(([\w.-]*)\.([\w]*)\.([A-z]))\w+" | sort -u```
 - [ ] Implement enumeration from AlienVault ```curl -s "https://otx.alienvault.com/api/v1/indicators/domain/tesla.com/url_list?limit=100&page=1" | grep -o '"hostname": *"[^"]*' | sed 's/"hostname": "//' | sort -u```
 - [ ] Create OSINT index and implement mecanism/tools that retrieve infos like emails, usernames, buckets, social midia profiles, github repos, files: docx, pdf, mp4, etc.
