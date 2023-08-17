@@ -28,10 +28,6 @@ ELASTIC_USER: "user"
 ELASTIC_PASS: "pass"
 ```
 
-- Pull and Run the Opensearch docker image for deploy the self manage Elasticsearch instance
-
-```docker pull opensearchproject/opensearch```
-
 **In c4mund0n60 tool folder**
 
 ```
