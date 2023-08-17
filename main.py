@@ -275,7 +275,7 @@ def encadeamento_rustscan(list_rustscan):
         try:
             telegramNotification(message)
         except telegram.error.TelegramError as e:
-            telegramNotification(e)
+            print("Error: " + str(e) + "\n")
 def encadeamento_httpx(dic_subs_novos):
     parallel_httpx(target,dic_subs_novos)
 def encadeamento_waybackurls():
@@ -321,7 +321,7 @@ def encadeamento_nuclei(dic_subs_novos):
                 try:
                     telegramNotification(message)
                 except telegram.error.TelegramError as e:
-                    telegramNotification(e)
+                    print("Error: " + str(e) + "\n")
 
 def parse():
     for line in list_subs_novos:
@@ -373,7 +373,7 @@ def parse():
         try:
             telegramNotification(message)
         except telegram.error.TelegramError as e:
-            telegramNotification(e)
+            print("Error: " + str(e) + "\n")
         
         try:
             dic_subs_novos[dic_subdomain['server.domain']] = dic_subdomain['server.ip']
