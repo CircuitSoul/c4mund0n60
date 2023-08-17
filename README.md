@@ -160,17 +160,23 @@ python3 main.py <project-name> --delete
   - https://github.com/tomnomnom/waybackurls
   - https://github.com/projectdiscovery/katana
   - https://github.com/projectdiscovery/nuclei
+  - https://github.com/0xPugazh/One-Liners
 
 
 # TO DO LIST - UPDATED 16/08/2023
 ### TO DO LIST FOR ACTIVE ENUMERATION THINGS
+- [ ] Implement quick subdomain takeover verification ```cat subs.txt | xargs  -P 50 -I % bash -c "dig % | grep CNAME" | awk '{print $1}' | sed 's/.$//g' | httpx -silent -status-code -cdn -csp-probe -tls-probe```
 - [ ] Implement cariddi tool (https://github.com/edoardottt/cariddi).
 - [ ] Implement a mecanism that get a list of root domains from a CIDR block (https://twitter.com/hakluke/status/1665931596631875584).
 - [ ] Implement regex analysis in JS files for search users, passwords and secrets things (https://adityashende17.medium.com/how-to-js-for-bug-bounties-edition-2023-7108b56d9db6).
 - [ ] Implement crackmapexec for brute force services and another things.
 
 ### TO DO LIST FOR OSINT / PASSIVE ENUMERATION THINGS
-- [ ] implement https://community.riskiq.com/ for more enumeration subdomains.
+- [ ] Implement https://community.riskiq.com/ for more enumeration subdomains.
+- [ ] Implement enumeration from BufferOver.run ```curl -s https://dns.bufferover.run/dns?q=.target.com | jq -r .FDNS_A[] | cut -d',' -f2 | sort -u```
+- [ ] Implement enumeration from Riddler.io ```curl -s https://dns.bufferover.run/dns?q=.target.com | jq -r .FDNS_A[] | cut -d',' -f2 | sort -u```
+- [ ] Implement enumeration from CertSpotter ```curl -s "https://certspotter.com/api/v1/issuances?domain=target.com&include_subdomains=true&expand=dns_names" | jq .[].dns_names | grep -Po "(([\w.-]*)\.([\w]*)\.([A-z]))\w+" | sort -u```
+- [ ] Implement enumeration from AlienVault ```curl -s "https://otx.alienvault.com/api/v1/indicators/domain/tesla.com/url_list?limit=100&page=1" | grep -o '"hostname": *"[^"]*' | sed 's/"hostname": "//' | sort -u```
 - [ ] Create OSINT index and implement mecanism/tools that retrieve infos like emails, usernames, buckets, social midia profiles, github repos, files: docx, pdf, mp4, etc.
 - [ ] Implement dork google search with Google CSE (Custom Search Engine) (https://github.com/AssassinUKG/googleSearcher).
 - [ ] Implement Linkedint (https://github.com/vysecurity/LinkedInt) **MAYBE**
@@ -178,6 +184,7 @@ python3 main.py <project-name> --delete
 - [ ] Implement search.censys.io or use tools like sublist3r/amass for this.
 - [ ] Implement SSL Certificates extration and DNS Names from ASN. (https://twitter.com/pdnuclei/status/1676184515021029377).
 - [ ] Implement nrich tool (https://asciinema.org/a/468923).
+- [ ] Implement BucketLoot (https://github.com/redhuntlabs/BucketLoot)
 
 ### TO DO LIST FOR MISCELLANEOUS THINGS
 - [ ] Reasearch a way for smaller execution time of amass
@@ -185,3 +192,4 @@ python3 main.py <project-name> --delete
 - [ ] Create a mecanism that identify and ignore (don't do any enumeration) of IP's , Netblocks and CIDR from CloudFlare, Akamai, CDN's , etc.
 - [ ] Add tutorial *How to change default password of Opensearch instance*
 - [ ] Add tutorial *How to install firewalld and filter all inbound traffic in elasticsearch ports*
+- [ ] Decrease the size of the docker image
