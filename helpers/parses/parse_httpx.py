@@ -30,6 +30,7 @@ from elasticInstance import getPass
 # from ipUtils import rdap_domain
 # from ipUtils import RDAPgetStartAndEndAddress
 # from ipUtils import ip_block_to_cidr
+from converTimezone import convertToUTC
 
 target = sys.argv[1]
 subdomain = sys.argv[2]
@@ -37,7 +38,7 @@ ip = sys.argv[3]
 headers = {'Accept' : 'application/json', 'Content-Type' : 'application/json'}
 url = getURLBase()+target+'-webenum/_doc?refresh'
 auth=(getUser(), getPass())
-hora = strftime("%Y-%m-%dT%H:%M:%S%Z")
+hora = convertToUTC(strftime("%Y-%m-%dT%H:%M:%S%Z"))
 scanner = 'httpx'
 x = str(uuid.uuid1()).split('-')[0]
 container_name = target+'-'+x+'-'+scanner

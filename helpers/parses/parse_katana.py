@@ -25,6 +25,14 @@ from elasticInstance import getURLBase
 from elasticInstance import getUser
 from elasticInstance import getPass
 
+# GET IP UTILS FOR ALL SCRIPTS
+# sys.path.append('helpers/scripts')
+# from ipUtils import RDAPgetStartAndEndAddress
+# from ipUtils import rdap_domain
+# from ipUtils import RDAPgetStartAndEndAddress
+# from ipUtils import ip_block_to_cidr
+from converTimezone import convertToUTC
+
 target = sys.argv[1]
 url2 = sys.argv[2]
 subdomain = sys.argv[3]
@@ -33,7 +41,7 @@ headers = {'Accept' : 'application/json', 'Content-Type' : 'application/json'}
 url = getURLBase()+target+'-webenum/_doc?refresh'
 urlConsultaKatanaIndex = getURLBase()+target+'-webenum/_search'
 auth=(getUser(), getPass())
-hora = strftime("%Y-%m-%dT%H:%M:%S%Z")
+hora = convertToUTC(strftime("%Y-%m-%dT%H:%M:%S%Z"))
 scanner = 'katana'
 dic_web = {}
 x = str(uuid.uuid1()).split('-')[0]

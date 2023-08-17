@@ -31,6 +31,7 @@ from ipUtils import rdap_domain
 from ipUtils import RDAPgetStartAndEndAddress
 from ipUtils import ip_block_to_cidr
 from ipUtils import getInfosIPfromSubdomainIndex
+from converTimezone import convertToUTC
 
 #GLOBAL INFOS
 target = sys.argv[1]
@@ -39,7 +40,7 @@ headers = {'Accept' : 'application/json', 'Content-Type' : 'application/json'}
 url_post = getURLBase()+target+'-portscan/_doc?refresh'
 url_get = getURLBase()+target+'-subdomain/_search'
 auth=(getUser(), getPass())
-hora = strftime("%Y-%m-%dT%H:%M:%S")
+hora = convertToUTC(strftime("%Y-%m-%dT%H:%M:%S%Z"))
 scanner = 'rustscan'
 dic_ports = {}
 x = str(uuid.uuid1()).split('-')[0]

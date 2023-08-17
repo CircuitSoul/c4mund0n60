@@ -415,6 +415,7 @@ def deleteProject(project):
         shutil.rmtree(projectPath)
     
     url_base = getURLBase()+project
+    url_subdomain_temp = getURLBase()+project+'-subdomain-temp'
     url_subdomain = getURLBase()+project+'-subdomain'
     url_portscan = getURLBase()+project+'-portscan'
     url_webenum = getURLBase()+project+'-webenum'
@@ -424,6 +425,7 @@ def deleteProject(project):
     try:
         requests.delete(url_base, headers=headers, auth=auth, verify=False)
         requests.delete(url_subdomain, headers=headers, auth=auth, verify=False)
+        requests.delete(url_subdomain_temp, headers=headers, auth=auth, verify=False)
         requests.delete(url_portscan, headers=headers, auth=auth, verify=False)
         requests.delete(url_webenum, headers=headers, auth=auth, verify=False)
         requests.delete(url_webvuln, headers=headers, auth=auth, verify=False)

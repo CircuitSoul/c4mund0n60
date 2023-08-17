@@ -27,13 +27,14 @@ sys.path.append('helpers/scripts')
 from ipUtils import rdap_domain
 from ipUtils import RDAPgetStartAndEndAddress
 from ipUtils import ip_block_to_cidr
+from converTimezone import convertToUTC
 
 target = sys.argv[1]
 domain = sys.argv[2]
 headers = {'Accept' : 'application/json', 'Content-Type' : 'application/json'}
 url = getURLBase()+target+'-subdomain-temp/_doc?refresh'
 auth=(getUser(), getPass())
-hora = strftime("%Y-%m-%dT%H:%M:%S%Z")
+hora = convertToUTC(strftime("%Y-%m-%dT%H:%M:%S%Z"))
 scanner = 'assetfinder'
 dic_subdomain = {}
 x = str(uuid.uuid1()).split('-')[0]
