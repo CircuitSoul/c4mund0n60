@@ -135,11 +135,21 @@ python3 main.py <project-name> --delete
   ```
   for i in $(docker ps --format "table {{.ID}}" | grep -v "CONTAINER ID");do docker inspect $i; done | jq --arg separator $'********' '$separator + .[].Config.WorkingDir, .[].Config.Cmd, .[].Config.Entrypoint' | grep '********'
   ```
+  
 </details>
 
 <details>
   <summary>How to change default password of Opensearch instance</summary>
-  in progress
+  
+  > in progress
+
+</details>
+
+<details>
+  <summary>How to install firewalld and filter all inbound traffic in elasticsearch ports</summary>
+  
+  > in progress
+
 </details>
 
 # THANKS
@@ -177,3 +187,5 @@ python3 main.py <project-name> --delete
 - [ ] Reasearch a way for smaller execution time of amass
 - [ ] Implement support a config files for the known tools used in c4mund0n60. e.g. `amass subcommand -config config.yaml`. This *config.yaml* can be found in ./configuration/tools/ folder.
 - [ ] Create a mecanism that identify and ignore (don't do any enumeration) of IP's , Netblocks and CIDR from CloudFlare, Akamai, CDN's , etc.
+- [ ] Add tutorial *How to change default password of Opensearch instance*
+- [ ] Add tutorial *How to install firewalld and filter all inbound traffic in elasticsearch ports*

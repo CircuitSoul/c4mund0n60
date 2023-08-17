@@ -25,7 +25,7 @@ from elasticInstance import getUser
 from elasticInstance import getPass
 
 # GET IP UTILS FOR ALL SCRIPTS
-# sys.path.append('helpers/scripts')
+sys.path.append('helpers/scripts')
 # from ipUtils import RDAPgetStartAndEndAddress
 # from ipUtils import rdap_domain
 # from ipUtils import RDAPgetStartAndEndAddress

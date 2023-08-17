@@ -368,7 +368,7 @@ def parse():
         r = requests.post(url_post, headers=headers, auth=auth, data=json.dumps(data), verify=False)
         print (r.text)
         message = "[+] New Subdomain finded - "+dic_subdomain['server.domain']+' - '+dic_subdomain['server.ip']
-        time.sleep(3)
+        time.sleep(1)
         
         try:
             telegramNotification(message)
