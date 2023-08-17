@@ -40,7 +40,7 @@ docker run -p 9200:9200 -p 9600:9600 -v $(pwd)/configuration/opensearch/data:/us
 
 #### Step 2.2 - Parallel and Python dependencies
 ```
-sudo apt install python3-pip parallel
+sudo apt install python3 python3-pip parallel
 pip3 install -r requirements.txt
 ```
 
@@ -84,7 +84,7 @@ python3 main.py <project-name> --delete
 
 # Attachments
 <details>
-  <summary>Setup Docker Engine (Native Docker) in WSL 2</summary>
+  <summary>Setup Docker Engine (Native Docker) in WSL 2 - Ubuntu </summary>
   
   >**Install need packages**
   ```
