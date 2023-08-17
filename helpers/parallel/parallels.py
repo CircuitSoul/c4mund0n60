@@ -14,7 +14,7 @@ def parallel_subdomainTemp(target,domain):
         file.write('python3 helpers/parses/parse_subfinder_temp.py '+target+' '+domain)
         file.write('python3 helpers/parses/parse_vtsubdomains_temp.py '+target+' '+domain)
         file.write('python3 helpers/parses/parse_chaos_temp.py '+target+' '+domain)
-        # file.write('python3 helpers/parses/parse_amass_temp.py '+target+' '+domain)
+        file.write('python3 helpers/parses/parse_amass_temp.py '+target+' '+domain)
     message = "[+][+] PROCESSANDO SUBDOMAIN TEMP \n"
     print(message)
         
