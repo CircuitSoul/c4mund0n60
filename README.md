@@ -35,8 +35,7 @@ ELASTIC_PASS: "pass"
 **In c4mund0n60 tool folder**
 
 ```
-sudo su
-docker run -p 9200:9200 -p 9600:9600 -v $(pwd)/configuration/opensearch/data:/usr/share/opensearch/data -v $(pwd)/configuration/opensearch/config:/usr/share/opensearch/config -e "discovery.type=single-node" --name opensearch-node -d opensearchproject/opensearch:latest
+docker run -p 9200:9200 -p 9600:9600 -v $(pwd)/configuration/opensearch/data:/usr/share/opensearch/data -e "discovery.type=single-node" --name opensearch-node -d opensearchproject/opensearch:latest
 ```
 
 #### Step 2.2 - Parallel and Python dependencies
