@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # c4mund0n60
 <p align="center">
   <img width="200" src="assets/c4mund0n60.jpg" alt="c4mund0n60 logo">
@@ -193,3 +194,6 @@ python3 main.py <project-name> --delete
 - [ ] Add tutorial *How to change default password of Opensearch instance*
 - [ ] Add tutorial *How to install firewalld and filter all inbound traffic in elasticsearch ports*
 - [ ] Decrease the size of the docker image
+=======
+# c4mund0n60
+>>>>>>> 409caebbfdde5c4f9b9fe57563ae17255ea49c5e

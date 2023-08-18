@@ -1,6 +1,12 @@
 #my custom paths ignore
 .vscode
 configuration/config.txt
+<<<<<<< HEAD
+=======
+configuration/__pycache__/
+helpers/__pycache__/
+targets/__pycache__/
+>>>>>>> 409caebbfdde5c4f9b9fe57563ae17255ea49c5e
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
