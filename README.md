@@ -3,22 +3,25 @@
   <img width="200" src="assets/c4mund0n60.jpg" alt="c4mund0n60 logo">
 </p>
 
-- c4mund0n60 is a tool that use output of known tools for generate smart information about a domain(target);
-- c4mund0n60 is integrate with Telegram and notify new subdomains founded , open ports and vulnerabilitys automatic.
+- c4mund0n60 is a tool that use output of known tools for generate smart information about a uniq or multiple domains;
+- c4mund0n60 is integrate with Telegram and notify new subdomains finded , open ports and vulnerabilitys automatic.
 
 # Flowchart 
 ![c4mund0n60 flowchart](assets/flowchart.drawio.png)
 
 # Installation Guide
 ## **THE STEP 2.3 IS MANDATORY**
-### Step 1 - Download and Build docker image
+### Step 1 - Install Docker Engine
+> **Follow this instructions : ** [#attachments](https://github.com/CircuitSoul/c4mund0n60/#attachments)
+
+### Step 2 - Download and Build docker image
 ```
 git clone https://github.com/CircuitSoul/c4mund0n60
 cd c4mund0n60
 docker image build -t c4mund0n60-tools:1.0 .
 ```
-### Step 2 - Environment setup and install dependencies
-#### Step 2.1 - ElasticSearch
+### Step 3 - Environment setup and install dependencies
+#### Step 3.1 - ElasticSearch
 > **if you want use a pre-deploy Elasticsearch instance, insert: url, user and pass in ./configuration/config.txt**
 >
 ```
@@ -34,13 +37,13 @@ ELASTIC_PASS: "pass"
 docker run -p 9200:9200 -p 9600:9600 -v $(pwd)/configuration/opensearch/data:/usr/share/opensearch/data -e "discovery.type=single-node" --name opensearch-node -d opensearchproject/opensearch:latest
 ```
 
-#### Step 2.2 - Parallel and Python dependencies
+#### Step 3.2 - Parallel and Python dependencies
 ```
 sudo apt install python3 python3-pip parallel
 pip3 install -r requirements.txt
 ```
 
-#### Step 2.3 - Set your keys in ./configuration/config.txt
+#### Step 3.3 - Set your keys in ./configuration/config.txt
 ```
 # TELEGRAM BOT
 TELEGRAM_ApiToken: "<apitoken-key>"
@@ -57,23 +60,23 @@ VTAPIKEY: "<vtapi-key>"
 #CHAOS API KEY
 CHAOSKEY: "<chaos-key>"
 ```
-- For create a telegram bot and get apitoken and chatID, this video is very useful (https://youtu.be/6xfUG8bghCw)
-- The default creds for self manage OpenSearch instance is admin:admin (Change is recommended)
+- To create a telegram bot and get apitoken and chatID, this video is very useful (https://youtu.be/6xfUG8bghCw)
+- The default creds for self manage OpenSearch instance is admin:admin (Change is recommended, if you use an VPS)
 - Get VTAPIKEY for free: https://www.virustotal.com/gui/join-us
 - Get CHAOSAPIKEY for free: https://chaos.projectdiscovery.io
 
 # How to use
-### For init a project , follow the instructions in output for insert domains in domains.txt
+### To init a project , follow the instructions in output for insert domains in domains.txt
 ##### Obs: Grants that your current user can do exec command docker (check  your permissions), else exec with sudo
 ```
 sh initProject.sh <project-name>
 ```
-### For init a project with domain list of bug bounty program or blackbox pentest
+### To init a project with domain list
 ```
 sh initProject.sh <project-name> <domains.txt>
 python3 main.py <project-name>
 ```
-### For delete ALL INDICES about a project
+### To delete ALL INDICES AND FILES about a project
 ```
 python3 main.py <project-name> --delete
 ```
