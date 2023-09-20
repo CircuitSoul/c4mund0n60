@@ -42,7 +42,7 @@ container_name = target+'-'+x+'-'+scanner
 saida = scanner+'-'+x+'.json'
 
 def executa():
-    subprocess.check_output('docker run --rm --name '+container_name+' -v $(pwd)/targets/'+target+'/temp:/data c4mund0n60-tools:1.0 amass enum -d '+domain+' -nocolor -dns-qps 5 -silent -json /data/'+saida+' || true', shell=True)
+    subprocess.check_output('docker run --rm --name '+container_name+' -v $(pwd)/targets/'+target+'/temp:/data c4mund0n60-tools:1.0 amass enum -d '+domain+' -passive -timeout 15 -dns-qps 3 -nocolor -silent -json /data/'+saida+' || true', shell=True)
     return 1
 
 def populate_list_with_ip_cidr(ip,cidr):

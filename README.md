@@ -12,8 +12,7 @@
 # Installation Guide
 ## **THE STEP 2.3 IS MANDATORY**
 ### Step 1 - Install Docker Engine
-> **Follow this instructions : ** [#attachments](https://github.com/CircuitSoul/c4mund0n60/#attachments)
-
+**Follow this instructions : ** [#attachments](https://github.com/CircuitSoul/c4mund0n60/#attachments)
 ### Step 2 - Download and Build docker image
 ```
 git clone https://github.com/CircuitSoul/c4mund0n60
@@ -190,7 +189,8 @@ python3 main.py <project-name> --delete
 - [ ] Implement BucketLoot (https://github.com/redhuntlabs/BucketLoot)
 
 ### TO DO LIST FOR MISCELLANEOUS THINGS
-- [ ] Reasearch a way for smaller execution time of amass
+- [x] Reasearch a way for smaller execution time of amass
+  - Use of the -passive and -timeout argument
 - [ ] Implement support a config files for the known tools used in c4mund0n60. e.g. `amass subcommand -config config.yaml`. This *config.yaml* can be found in ./configuration/tools/ folder.
 - [ ] Create a mecanism that identify and ignore (don't do any enumeration) of IP's , Netblocks and CIDR from CloudFlare, Akamai, CDN's , etc.
 - [ ] Add tutorial *How to change default password of Opensearch instance*
