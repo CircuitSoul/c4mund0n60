@@ -12,7 +12,7 @@
 # Installation Guide
 ## **THE STEP 2.3 IS MANDATORY**
 ### Step 1 - Install Docker Engine
-*Follow this instructions : * [#attachments](https://github.com/CircuitSoul/c4mund0n60/#attachments)
+Follow this instructions : [#attachments](https://github.com/CircuitSoul/c4mund0n60/#attachments)
 ### Step 2 - Download and Build docker image
 ```
 git clone https://github.com/CircuitSoul/c4mund0n60
